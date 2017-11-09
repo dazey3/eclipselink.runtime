@@ -54,7 +54,7 @@
 *********************************************************************************-->
 <project name="Upload2Maven"  basedir="." xmlns:artifact="urn:maven-artifact-ant" default="upload-maven-all">
     <property file="${user.home}/build.properties"/>
-    <property file="build.properties"/>
+    <property file="antbuild.properties"/>
     <!-- The following properties defined so they can be overridden for testing -->
     <property name="mavenant.dir" value="${build.deps.dir}/mavenant"/>
     <property name="eclipselink.root.download.dir" value="home/data/httpd/download.eclipse.org/rt/eclipselink"/>
@@ -137,7 +137,7 @@
         <!-- Set maven.version appropriately depending upon ${build.type}.           -->
         <!--    variable should only be used for maven version element in POM.       -->
         <condition property="maven.version" value="${release.version}"
-                   else="${release.version}-${build.type}">
+                   else="${release.version}-${git.hash}-${build.type}">
             <equals arg1="${build.type}" arg2="RELEASE"/>
         </condition>
 
